@@ -1,26 +1,252 @@
 @import "tailwindcss";
 
+/*
+  SoftDevArts · Design System v4 · "Yellow Press"
+  -------------------------------------------------------------
+  Architectural, craft-engineering brand. Off-white canvas,
+  near-black ink, and a COMMITTED press-yellow used as full
+  surfaces (whole bands / blocks carrying black type), never as
+  yellow text on white (fails contrast). Schematic hairlines and
+  a sparse blueprint grid carry the engineering register.
+  Display: Bricolage Grotesque · Body: Hanken Grotesk · Mono: JetBrains Mono.
+  Sub-brands keep their own skin: BlackBox (bb-*, dark) · AZA (warm pastels).
+  Token NAMES are stable so every page inherits the restyle.
+*/
+
+@theme {
+  /* ---- Core palette (OKLCH) ---- */
+  --color-base: oklch(0.985 0.002 95); /* off-white page canvas (no pure #fff) */
+  --color-panel: oklch(0.965 0.004 95); /* light section surface */
+  --color-panel-2: oklch(0.94 0.006 95); /* hover / nested surface */
+  --color-fg: oklch(0.18 0.004 90); /* near-black ink (no pure #000) */
+  --color-dim: oklch(0.44 0.006 90); /* muted text (>=4.5:1 on base) */
+  --color-line: oklch(0.9 0.006 95); /* hairline border */
+  --color-line-strong: oklch(0.82 0.008 95); /* emphasis hairline */
+
+  --color-accent: oklch(0.87 0.18 96); /* PRESS YELLOW · fills / blocks / signal */
+  --color-accent-soft: oklch(0.95 0.07 98); /* pale yellow wash */
+  --color-accent-ink: oklch(0.36 0.09 78); /* dark-yellow text (AA on white) */
+
+  /* gradient endpoints kept for legacy thin accent lines */
+  --color-brand: oklch(0.18 0.004 90);
+  --color-brand-2: oklch(0.87 0.18 96);
+
+  /* ---- BlackBox (Office) palette · monochrome dark ---- */
+  --color-bb-bg: oklch(0.16 0.003 90);
+  --color-bb-surface: oklch(0.21 0.003 90);
+  --color-bb-text: oklch(0.97 0.002 90);
+  --color-bb-muted: oklch(0.68 0.004 90);
+  --color-bb-accent: oklch(0.97 0.002 90);
+  --color-bb-line: oklch(0.3 0.003 90);
+
+  /* ---- Typography ---- */
+  --font-sans: var(--font-sans-src), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-src), var(--font-sans-src), sans-serif;
+  --font-mono: var(--font-mono-src), ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Semantic z-index scale ---- */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-backdrop: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-skip: 100;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-base);
+  --foreground: var(--color-fg);
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-padding-top: 5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Fallback smooth scroll when Lenis is off (reduced motion) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-base);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv01";
+}
+
+/* Display utility — Bricolage, tight-but-legible tracking (floor -0.04em) */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  font-weight: 700;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Typographic niceties */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Yellow marker highlight behind inline text (keeps black text on top) */
+.highlight {
+  background-image: linear-gradient(
+    transparent 8%,
+    var(--color-accent) 8%,
+    var(--color-accent) 90%,
+    transparent 90%
+  );
+  padding-inline: 0.14em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Solid ink fill block (icon tiles, dark blocks); legacy name kept */
+.gradient-brand {
+  background: var(--color-fg);
+}
+
+/* Fallback for any leftover gradient-text usage: solid near-black ink */
+.gradient-text {
+  color: var(--color-fg);
+}
+
+/* Card surface — full hairline, no decorative shadow paired with it */
+.card-glow {
+  background: var(--color-base);
+  border: 1px solid var(--color-line);
+}
+
+/* Defined elevations (use ONE, never border+wide-shadow together) */
+.shadow-soft {
+  box-shadow: 0 1px 0 var(--color-line), 0 18px 40px -28px oklch(0.18 0.01 90 / 0.4);
+}
+
+/* Hard architectural offset shadow (no blur) — the press/print feel */
+.shadow-hard {
+  box-shadow: 8px 8px 0 0 var(--color-fg);
+}
+.shadow-hard-accent {
+  box-shadow: 8px 8px 0 0 var(--color-accent);
+}
+
+/* Sparse blueprint grid (decorative, deliberate — engineering register) */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.18 0.01 90 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.18 0.01 90 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Eyebrow / kicker label — used sparingly, not as section grammar */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Accessible focus ring */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* On dark / yellow surfaces, switch ring to a visible contrast */
+.on-dark :where(a, button, input, textarea, select):focus-visible {
+  outline-color: var(--color-accent);
+}
+
+/* Reveal-on-scroll — enhances already-visible default (never gates content) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  /* Optional stagger when a parent opts in */
+  .reveal[data-delay="1"] { transition-delay: 0.08s; }
+  .reveal[data-delay="2"] { transition-delay: 0.16s; }
+  .reveal[data-delay="3"] { transition-delay: 0.24s; }
+}
+
+/* Marquee for the client logos */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+  .marquee-track:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+  .animate-marquee-slow {
+    animation: marquee 30s linear infinite;
+  }
+}
+
+/* Outlined (stroke) text for the giant statement band */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-fg);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .text-outline {
+    color: var(--color-fg);
+  }
+}
+.text-outline-invert {
+  color: transparent;
+  -webkit-text-stroke: 1.5px oklch(0.985 0.002 95);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .text-outline-invert {
+    color: oklch(0.985 0.002 95);
+  }
 }
