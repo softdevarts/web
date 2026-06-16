@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { site } from "@/lib/site";
 
+// The Resend SDK needs the Node.js runtime (not Edge), and this route reads
+// the incoming request, so it must never be statically prerendered.
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 // Where the messages land and who they appear to come from.
 // CONTACT_FROM must be an address on a domain verified in Resend.
 // Until the domain is verified, Resend's shared sender works for testing
