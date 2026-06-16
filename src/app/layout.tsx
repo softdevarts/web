@@ -30,11 +30,11 @@ const SITE_URL = "https://www.softdevarts.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SoftDevArts · Software Development Artisans",
+    default: "SoftDevArts · Software Development Artisans. S.L.",
     template: "%s · SoftDevArts",
   },
   description:
-    "Software Development Artisans. Software consulting and custom development with the precision of a craft. Premià de Mar, Barcelona.",
+    "Software Development Artisans S.L. Software consulting and custom development with the precision of a craft. Premià de Mar, Barcelona.",
   keywords: [
     "software development",
     "software consulting",

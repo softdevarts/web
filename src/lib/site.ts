@@ -21,7 +21,7 @@ import azaBonds from "@/app/assets/aza/Vinculos.png";
 
 export const site = {
   name: "SoftDevArts",
-  longName: "Software Development Artisans",
+  longName: "Software Development Artisans S.L.",
   tagline: "Your partners in software and business excellence",
   email: "info@softdevarts.com",
   address: {

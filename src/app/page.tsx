@@ -308,9 +308,6 @@ export default function Home() {
             <h2 className="font-display mx-auto max-w-2xl text-[2.5rem] leading-[1.02] tracking-[-0.03em] text-on-accent sm:text-6xl">
               Let’s forge something great together
             </h2>
-            <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-on-accent/80">
-              A short call, no pitch. We reply within one business day.
-            </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <ButtonLink href="/contacto" variant="primary" withArrow>
                 Contact us
