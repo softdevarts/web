@@ -12,7 +12,7 @@ frontend:
         # never committed (it is covered by .gitignore). Only server-side
         # vars are listed here — none are prefixed NEXT_PUBLIC_, so they are
         # never shipped to the browser.
-        - env | grep -E '^(RESEND_API_KEY|CONTACT_TO|CONTACT_FROM)=' >> .env.production || true
+        - env | grep -E '^(RESEND_API_KEY|CONTACT_TO|CONTACT_FROM)=' > .env.production || true
         - npm run build
   artifacts:
     baseDirectory: .next
