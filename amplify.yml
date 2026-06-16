@@ -1,0 +1,24 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        # Expose the secret env vars set in the Amplify Console to the Next.js
+        # server runtime by writing the selected ones into .env.production at
+        # build time. This file is generated on the build host only and is
+        # never committed (it is covered by .gitignore). Only server-side
+        # vars are listed here — none are prefixed NEXT_PUBLIC_, so they are
+        # never shipped to the browser.
+        - env | grep -E '^(RESEND_API_KEY|CONTACT_TO|CONTACT_FROM)=' > .env.production || true
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*

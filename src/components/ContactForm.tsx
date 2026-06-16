@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IconCheck, IconArrowRight } from "./icons";
 
 const fieldClass =
@@ -10,6 +10,12 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // When the form became interactive — used as an anti-spam timing trap.
+  // Set after mount (not during render) to avoid a hydration mismatch.
+  const mountedAtRef = useRef(0);
+  useEffect(() => {
+    mountedAtRef.current = Date.now();
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,12 +28,15 @@ export default function ContactForm() {
     setError(null);
 
     const data = Object.fromEntries(new FormData(form).entries());
+    const elapsedMs = mountedAtRef.current
+      ? Date.now() - mountedAtRef.current
+      : 0;
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, elapsedMs }),
       });
 
       if (!res.ok) {
