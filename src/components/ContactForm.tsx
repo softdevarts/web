@@ -8,15 +8,44 @@ const fieldClass =
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     // Honeypot: if filled, it’s a bot, silently ignore.
     const trap = (form.elements.namedItem("website") as HTMLInputElement)?.value;
     if (trap) return;
-    // Demo: aquí conectarías con tu backend, email o API.
-    setSent(true);
+
+    setSending(true);
+    setError(null);
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const payload = await res.json().catch(() => null);
+        throw new Error(payload?.error ?? "Something went wrong.");
+      }
+
+      form.reset();
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Could not send the message. Please try again later.",
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
@@ -37,7 +66,10 @@ export default function ContactForm() {
         </p>
         <button
           type="button"
-          onClick={() => setSent(false)}
+          onClick={() => {
+            setSent(false);
+            setError(null);
+          }}
           className="mt-6 cursor-pointer rounded-full border border-line-strong px-5 py-2.5 text-sm font-semibold text-fg transition-[transform,background-color,border-color] duration-150 ease-[var(--ease-out)] hover:border-fg hover:bg-panel-2 active:scale-[0.98] motion-reduce:active:scale-100"
         >
           Send another message
@@ -114,12 +146,21 @@ export default function ContactForm() {
         />
       </div>
 
+      {error && (
+        <p role="alert" className="mt-5 text-sm font-medium text-red-600">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="group mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-fg px-6 py-3.5 text-sm font-semibold text-base transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:opacity-90 active:scale-[0.99] motion-reduce:active:scale-100"
+        disabled={sending}
+        className="group mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-fg px-6 py-3.5 text-sm font-semibold text-base transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:opacity-90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:active:scale-100"
       >
-        Send message
-        <IconArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        {sending ? "Sending…" : "Send message"}
+        {!sending && (
+          <IconArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        )}
       </button>
       <p className="mt-4 text-center text-xs text-dim">
         By submitting you accept our privacy policy.
