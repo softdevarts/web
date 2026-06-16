@@ -7,9 +7,10 @@ import { IconCheck } from "./icons";
   accents, JetBrains Mono label.
 */
 const modes = [
-  { title: "Tailored teams", text: "Sized to the work, on demand." },
-  { title: "Project or sprint", text: "Fixed scope, or your own cadence." },
-  { title: "Team reinforcement", text: "Senior hands and mentoring." },
+  { title: "Consulting & analysis", text: "Business needs into a clear plan." },
+  { title: "Architecture & roadmap", text: "Scalable foundations, mapped out." },
+  { title: "Custom development", text: "Modern stack, tested, shipped." },
+  { title: "Audit & improvement", text: "Harden and tune what's live." },
 ] as const;
 
 export default function HeroPanel() {
@@ -18,7 +19,7 @@ export default function HeroPanel() {
       <div className="flex items-center gap-2.5 border-b border-white/10 px-5 py-4">
         <span className="h-2.5 w-2.5 -skew-x-12 bg-accent" aria-hidden="true" />
         <span className="font-mono text-xs tracking-tight text-white/55">
-          how we plug in
+          what we do
         </span>
       </div>
       <ul className="divide-y divide-white/8 px-5">

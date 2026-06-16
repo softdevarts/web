@@ -211,8 +211,8 @@ export default function OfficePage() {
           </div>
           <div className="reveal relative aspect-[4/3] overflow-hidden rounded-3xl border border-bb-line">
             <Image
-              src="/office/lounge.jpg"
-              alt="BlackBox Coworking lounge with an armchair and ochre curtain"
+              src="/office/cafe.jpg"
+              alt="BlackBox Coworking coffee corner with a vintage shelf"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover grayscale"

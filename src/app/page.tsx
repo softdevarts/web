@@ -1,10 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { clients, servicePillars, aza, founders, foundersIntro } from "@/lib/site";
 import { ButtonLink, Eyebrow, SectionHeading } from "@/components/ui";
 import HeroPanel from "@/components/HeroPanel";
 import Icon from "@/components/Icon";
-import { IconArrowRight, IconArrowUpRight } from "@/components/icons";
+import { IconArrowUpRight, IconLinkedin } from "@/components/icons";
 
 const process = [
   { title: "Understand", text: "We map the business need and the constraints before a line of code." },
@@ -70,7 +69,7 @@ export default function Home() {
       <section className="border-b border-fg bg-fg">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-base/55">
-            Trusted by teams at
+            Trusted by
           </p>
           <ul className="mx-auto mt-8 grid max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-8 lg:grid-cols-9">
             {clients.map((c) => (
@@ -227,22 +226,15 @@ export default function Home() {
               <p className="mt-4 max-w-md text-lg leading-relaxed text-[#6b5546]">
                 A free, web-based method that helps families reconnect.
               </p>
-              <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <Link
-                  href="/projects"
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#3b2a22] px-6 py-3 text-sm font-semibold text-[#f6ece2] transition-[transform,background-color] duration-150 ease-[var(--ease-out)] hover:bg-[#2c1f19] active:scale-[0.97] motion-reduce:active:scale-100"
-                >
-                  About {aza.name}
-                  <IconArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
+              <div className="mt-7">
                 <a
                   href={aza.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#b4623c] underline-offset-4 hover:underline"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#3b2a22] px-6 py-3 text-sm font-semibold text-[#f6ece2] transition-[transform,background-color] duration-150 ease-[var(--ease-out)] hover:bg-[#2c1f19] active:scale-[0.97] motion-reduce:active:scale-100"
                 >
-                  aza.family
-                  <IconArrowUpRight className="h-4 w-4" />
+                  About AZA
+                  <IconArrowUpRight className="h-4 w-4 transition-transform duration-200 ease-[var(--ease-out)] motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
                 </a>
               </div>
             </div>
@@ -265,7 +257,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
             <div className="lg:col-span-5">
               <h2 className="font-display text-3xl font-bold leading-tight text-fg sm:text-4xl">
-                The people you’ll work with
+                Leadership with experience and vision
               </h2>
               <p className="mt-4 max-w-sm text-lg leading-relaxed text-dim">
                 {foundersIntro}
@@ -278,26 +270,34 @@ export default function Home() {
             </div>
             <ul className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
               {founders.map((f, i) => (
-                <li
-                  key={f.name}
-                  className="reveal group flex items-center gap-5 rounded-2xl border border-line p-5 transition-colors duration-300 hover:border-fg"
-                  data-delay={i}
-                >
-                  <Image
-                    src={f.photo}
-                    alt={f.name}
-                    width={96}
-                    height={96}
-                    className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                  />
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-fg">
-                      {f.name}
-                    </h3>
-                    <p className="mt-0.5 text-sm font-semibold text-dim">
-                      {f.role}
-                    </p>
-                  </div>
+                <li key={f.name} className="reveal" data-delay={i}>
+                  <a
+                    href={f.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${f.name} on LinkedIn`}
+                    className="group flex items-center gap-5 rounded-2xl border border-line p-5 transition-colors duration-300 hover:border-fg"
+                  >
+                    <Image
+                      src={f.photo}
+                      alt={f.name}
+                      width={96}
+                      height={96}
+                      className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                    />
+                    <div className="min-w-0">
+                      <h3 className="font-display text-lg font-bold text-fg">
+                        {f.name}
+                      </h3>
+                      <p className="mt-0.5 text-sm font-semibold text-dim">
+                        {f.role}
+                      </p>
+                    </div>
+                    <IconLinkedin
+                      className="ml-auto h-5 w-5 shrink-0 text-dim transition-colors duration-200 group-hover:text-fg"
+                      aria-hidden="true"
+                    />
+                  </a>
                 </li>
               ))}
             </ul>

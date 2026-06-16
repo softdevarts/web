@@ -22,6 +22,9 @@ import {
   IconCoffee,
   IconCalendar,
   IconPrinter,
+  IconKey,
+  IconMonitor,
+  IconSofa,
 } from "./icons";
 
 const map = {
@@ -47,6 +50,9 @@ const map = {
   coffee: IconCoffee,
   calendar: IconCalendar,
   printer: IconPrinter,
+  key: IconKey,
+  monitor: IconMonitor,
+  sofa: IconSofa,
 } as const;
 
 export type IconName = keyof typeof map;

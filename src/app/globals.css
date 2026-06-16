@@ -22,13 +22,13 @@
   --color-line: oklch(0.9 0.006 95); /* hairline border */
   --color-line-strong: oklch(0.82 0.008 95); /* emphasis hairline */
 
-  --color-accent: oklch(0.87 0.18 96); /* press yellow · signal */
-  --color-accent-soft: oklch(0.95 0.07 98); /* pale yellow wash */
-  --color-on-accent: oklch(0.22 0.04 80); /* dark ink for text/icons ON yellow */
+  --color-accent: #eba907; /* brand gold · signal (matches the logo mark) */
+  --color-accent-soft: oklch(0.95 0.07 92); /* pale gold wash */
+  --color-on-accent: oklch(0.24 0.05 75); /* dark ink for text/icons ON gold */
 
   /* gradient endpoints kept for legacy */
   --color-brand: oklch(0.18 0.004 90);
-  --color-brand-2: oklch(0.87 0.18 96);
+  --color-brand-2: #eba907;
 
   /* ---- BlackBox (Office) palette · monochrome dark ---- */
   --color-bb-bg: oklch(0.16 0.003 90);

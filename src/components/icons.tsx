@@ -203,3 +203,27 @@ export const IconPrinter = (p: IconProps) => (
     <path d="M7 16h10v4H7z" />
   </Base>
 );
+
+export const IconKey = (p: IconProps) => (
+  <Base {...p}>
+    <circle cx="7.5" cy="15.5" r="4.5" />
+    <path d="m10.8 12.2 8.2-8.2" />
+    <path d="m15.5 7.5 2.5 2.5" />
+    <path d="m18 5 2.5 2.5" />
+  </Base>
+);
+
+export const IconMonitor = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="2.5" y="4" width="19" height="12" rx="2" />
+    <path d="M8.5 20h7M12 16v4" />
+  </Base>
+);
+
+export const IconSofa = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M5 11V7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5V11" />
+    <path d="M3 11a2 2 0 0 1 2 2v3h14v-3a2 2 0 0 1 4 0v5H1v-5a2 2 0 0 1 2-2z" />
+    <path d="M6 19v1.5M18 19v1.5" />
+  </Base>
+);

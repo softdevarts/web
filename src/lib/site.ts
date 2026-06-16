@@ -135,21 +135,23 @@ export const foundersIntro =
 export const founders = [
   {
     name: "Azahara",
-    role: "Co-founder · Senior Business Analyst",
-    bio: "Turns sharp analysis into insight, keeping every project aligned with real objectives.",
+    role: "Co-founder · Senior Business Analyst and Data Analyst",
+    bio: "Turns sharp analysis into insight, keeping every project aligned with real needs.",
     photo: "/team/azahara.png",
+    linkedin: "https://es.linkedin.com/in/azahara-trigueros-martinez-88479027",
   },
   {
     name: "Carlos",
-    role: "Co-founder · Senior Developer",
+    role: "Co-founder · Senior Software Developer",
     bio: "Drives innovation and efficiency, leading the team to build solutions that push what’s possible.",
     photo: "/team/carlos.png",
+    linkedin: "https://es.linkedin.com/in/carlosrfernandez",
   },
 ] as const;
 
 /* ---- Projects · AZA (aza.family) ---- */
 export const aza = {
-  name: "AZA",
+  name: "aza.family",
   url: projectsUrl,
   logo: "/aza-flower.png",
   tagline: "Listen to each other, truly",
@@ -190,10 +192,10 @@ export const officeSpaces = [
     image: "/office/rincon.jpg",
   },
   {
-    icon: "building",
-    title: "Private office",
-    text: "A closed space for your team, the privacy of an office with the perks of the coworking.",
-    image: "/office/despacho-privado.jpg",
+    icon: "sofa",
+    title: "Relax zone",
+    text: "A cosy corner to step away, recharge and switch off between sprints.",
+    image: "/office/lounge.jpg",
   },
   {
     icon: "calendar",
@@ -204,12 +206,14 @@ export const officeSpaces = [
 ] as const;
 
 export const officeAmenities = [
-  { icon: "wifi", label: "High-speed fibre" },
-  { icon: "coffee", label: "Coffee & kitchen" },
-  { icon: "printer", label: "Printing & scanning" },
-  { icon: "calendar", label: "Bookable rooms" },
-  { icon: "users", label: "Community & networking" },
-  { icon: "clock", label: "Flexible access" },
+  { icon: "shield", label: "24/7 alarm & CCTV" },
+  { icon: "key", label: "Digital access" },
+  { icon: "desk", label: "Ergonomic chair & sit-stand desk" },
+  { icon: "printer", label: "Printer" },
+  { icon: "monitor", label: "Curved monitor" },
+  { icon: "coffee", label: "Coffee, kitchen & fridge" },
+  { icon: "sofa", label: "Relax area" },
+  { icon: "calendar", label: "Meeting room with whiteboard" },
 ] as const;
 
 /* Curated gallery for the Office page */

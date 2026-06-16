@@ -3,6 +3,7 @@ import Image from "next/image";
 import { founders, clients, aboutStory, foundersIntro } from "@/lib/site";
 import { ButtonLink, Eyebrow } from "@/components/ui";
 import Icon from "@/components/Icon";
+import { IconLinkedin } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "About",
@@ -113,6 +114,16 @@ export default function SobreNosotrosPage() {
                 {f.role}
               </p>
               <p className="mt-3 max-w-md leading-relaxed text-dim">{f.bio}</p>
+              <a
+                href={f.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${f.name} on LinkedIn`}
+                className="group/li mt-4 inline-flex items-center gap-2 text-sm font-semibold text-fg underline-offset-4 hover:underline"
+              >
+                <IconLinkedin className="h-4 w-4 text-dim transition-colors duration-200 group-hover/li:text-fg" />
+                LinkedIn
+              </a>
             </article>
           ))}
         </div>
