@@ -93,7 +93,7 @@ export default function OfficePage() {
           {officeSpaces.map((s) => (
             <article
               key={s.title}
-              className="reveal group relative overflow-hidden rounded-2xl border border-bb-line"
+              className="reveal group relative overflow-hidden rounded-3xl border border-bb-line"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
@@ -101,10 +101,10 @@ export default function OfficePage() {
                   alt={s.title}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                  className="object-cover grayscale transition-[transform,filter] duration-500 ease-[var(--ease-out)] group-hover:scale-105 group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bb-bg via-bb-bg/30 to-transparent" />
-                <span className="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-xl bg-bb-bg/70 text-bb-accent backdrop-blur">
+                <span className="absolute left-5 top-5 grid h-15 w-11 place-items-center rounded-xl bg-bb-bg/70 text-bb-accent backdrop-blur">
                   <Icon name={s.icon} className="h-5 w-5" />
                 </span>
               </div>
@@ -158,7 +158,7 @@ export default function OfficePage() {
                 width={600}
                 height={800}
                 sizes="(max-width: 1024px) 50vw, 33vw"
-                className="h-auto w-full object-cover grayscale transition-all duration-700 hover:scale-105 hover:grayscale-0"
+                className="h-auto w-full object-cover grayscale transition-[transform,filter] duration-500 ease-[var(--ease-out)] hover:scale-105 hover:grayscale-0"
               />
             </div>
           ))}
@@ -174,8 +174,10 @@ export default function OfficePage() {
               In the heart of Premià de Mar
             </h2>
             <p className="mt-4 text-base leading-relaxed text-bb-muted">
-              A step from the centre and well connected. Come and see it, grab a
-              coffee with us and feel the atmosphere.
+             Welcome to Software Development Artisans, where we specialize in crafting high-quality software solutions. Our team of skilled developers and designers work collaboratively to bring your ideas to life, ensuring that every project is tailored to meet your unique needs. Whether you're looking for web development, mobile applications, or custom software solutions, we are committed to delivering excellence and innovation in every line of code.
+             As a small yet dynamic team, we provide personalized attention and agile development processes, allowing us to adapt quickly to changing requirements and deliver results efficiently. Our passion for technology and dedication to our clients drive us to create software that not only meets but exceeds expectations. Join us on a journey of digital transformation and let us help you achieve your business goals through innovative software solutions. 
+
+
             </p>
             <ul className="mt-8 space-y-3 text-sm">
               {[
@@ -207,7 +209,7 @@ export default function OfficePage() {
               </a>
             </div>
           </div>
-          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-2xl border border-bb-line">
+          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-3xl border border-bb-line">
             <Image
               src="/office/lounge.jpg"
               alt="BlackBox Coworking lounge with an armchair and ochre curtain"

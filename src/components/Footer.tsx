@@ -82,17 +82,17 @@ export default function Footer() {
           <p>© {2026} SoftDevArts. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li>
-              <Link href="/aviso-legal" className="hover:text-base">
+              <Link href="/aviso-legal" className="transition-colors hover:text-base">
                 Legal notice
               </Link>
             </li>
             <li>
-              <Link href="/privacidad" className="hover:text-base">
+              <Link href="/privacidad" className="transition-colors hover:text-base">
                 Privacy policy
               </Link>
             </li>
             <li>
-              <Link href="/cookies" className="hover:text-base">
+              <Link href="/cookies" className="transition-colors hover:text-base">
                 Cookie policy
               </Link>
             </li>

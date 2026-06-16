@@ -1,28 +1,23 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmoothScroll from "@/components/SmoothScroll";
 
-// Body / UI: neutral, legible text grotesque.
-const hanken = Hanken_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-sans-src",
-  weight: ["400", "500", "600", "700"],
+// Brand font for the whole site: Circular Std (Book for text/UI, Black for display).
+const circular = localFont({
+  src: [
+    { path: "./assets/fonts/CircularStd-Book.otf", weight: "400", style: "normal" },
+    { path: "./assets/fonts/CircularStd-Black.otf", weight: "900", style: "normal" },
+  ],
+  variable: "--font-circular",
   display: "swap",
 });
 
-// Display: idiosyncratic, crafted grotesque for headlines.
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-display-src",
-  weight: ["500", "600", "700", "800"],
-  display: "swap",
-});
-
-// Mono: honest technical voice (code window, small labels).
+// Mono: honest technical voice (small labels, panel).
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono-src",
@@ -69,12 +64,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${hanken.variable} ${bricolage.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${circular.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-base text-fg">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-accent"
         >
           Skip to content
         </a>

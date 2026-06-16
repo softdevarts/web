@@ -27,16 +27,16 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-base/85 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <Link href="/" aria-label="SoftDevArts, home" className="rounded-md">
-          <Logo />
+          <Logo size="h-15" />
         </Link>
 
         {/* Desktop */}
         <ul className="hidden items-center gap-1 lg:flex">
           {(nav as readonly NavItem[]).map((link) => {
             const active = isActive(link);
-            const cls = `relative cursor-pointer rounded-md px-3.5 py-2 text-sm font-medium transition-colors hover:text-fg ${
+            const cls = `relative cursor-pointer rounded-md px-4 py-2.5 text-[1.05rem] font-medium transition-colors hover:text-fg ${
               active ? "text-fg" : "text-dim"
             }`;
             return (
@@ -55,7 +55,7 @@ export default function Navbar() {
                   <Link href={link.href} aria-current={active ? "page" : undefined} className={cls}>
                     {link.label}
                     <span
-                      className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 origin-left rounded-full bg-accent transition-transform duration-300 ${
+                      className={`absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-accent transition-transform duration-300 ${
                         active ? "scale-x-100" : "scale-x-0"
                       }`}
                     />
@@ -67,7 +67,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/contacto"
-              className="group ml-2 inline-flex items-center gap-1.5 rounded-full bg-fg px-5 py-2 text-sm font-semibold text-base transition-opacity hover:opacity-90"
+              className="group ml-2 inline-flex items-center gap-1.5 rounded-full bg-fg px-5 py-2.5 text-[1.05rem] font-semibold text-base transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:opacity-90 active:scale-[0.97] motion-reduce:active:scale-100"
             >
               Let’s talk
               <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -126,7 +126,7 @@ export default function Navbar() {
               <Link
                 href="/contacto"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-full bg-fg px-5 py-3 text-base font-semibold text-base"
+                className="flex items-center justify-center gap-2 rounded-full bg-fg px-5 py-3 text-base font-semibold text-base transition-transform duration-150 ease-[var(--ease-out)] active:scale-[0.98] motion-reduce:active:scale-100"
               >
                 Let’s talk
                 <IconArrowRight className="h-4 w-4" />

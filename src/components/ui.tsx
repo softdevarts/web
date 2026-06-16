@@ -13,15 +13,15 @@ type ButtonLinkProps = {
 };
 
 const base =
-  "group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[transform,background-color,border-color,color] duration-200 ease-[var(--ease-out)] active:scale-[0.97] motion-reduce:active:scale-100";
+  "group inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[transform,background-color,border-color,color] duration-150 ease-[var(--ease-out)] active:scale-[0.97] motion-reduce:active:scale-100";
 
 const variants = {
-  // Ink pill — the default action
-  primary: "bg-fg text-base hover:bg-fg/88",
-  // Signal CTA — committed press-yellow, black ink (high contrast)
-  accent: "bg-accent text-fg hover:bg-accent/85",
-  // Hairline outline that darkens on hover
-  secondary: "border border-line-strong bg-base text-fg hover:border-fg",
+  // Ink pill, the default action
+  primary: "bg-fg text-base hover:bg-fg/90",
+  // Signal CTA, press-yellow with dark ink (high contrast)
+  accent: "bg-accent text-on-accent hover:bg-accent/90",
+  // Hairline outline that brightens on hover
+  secondary: "border border-line-strong text-fg hover:border-fg hover:bg-panel",
   ghost: "px-2 text-fg underline-offset-4 hover:underline",
 } as const;
 

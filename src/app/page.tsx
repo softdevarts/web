@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { clients, servicePillars, aza } from "@/lib/site";
+import { clients, servicePillars, aza, founders, foundersIntro } from "@/lib/site";
 import { ButtonLink, Eyebrow, SectionHeading } from "@/components/ui";
-import CodeWindow from "@/components/CodeWindow";
+import HeroPanel from "@/components/HeroPanel";
 import Icon from "@/components/Icon";
-import { IconArrowRight, IconArrowUpRight, IconCheck } from "@/components/icons";
+import { IconArrowRight, IconArrowUpRight } from "@/components/icons";
+
+const process = [
+  { title: "Understand", text: "We map the business need and the constraints before a line of code." },
+  { title: "Architect", text: "A technical roadmap that scales and won’t box you in later." },
+  { title: "Build", text: "Modern stack, tested, shipped in your team’s cadence." },
+  { title: "Support", text: "We audit, harden and keep improving what’s live." },
+] as const;
 
 export default function Home() {
   return (
@@ -13,30 +20,35 @@ export default function Home() {
       <section className="relative overflow-hidden border-b border-line">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_72%)]"
+          className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
         />
-        {/* architectural yellow corner block */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 hidden h-72 w-72 -skew-x-12 bg-accent/70 lg:block"
+          className="animate-floaty pointer-events-none absolute -left-16 top-40 hidden h-36 w-36 -skew-x-12 bg-accent/30 blur-[2px] lg:block [--rot:-12deg]"
         />
 
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-12 lg:gap-10">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-base px-4 py-1.5 text-xs font-semibold">
-              <span className="h-2 w-2 rounded-full bg-accent ring-2 ring-fg" />
+            <Eyebrow className="animate-rise">
               Software Development Artisans
-            </span>
-            <h1 className="font-display mt-6 text-[2.75rem] font-extrabold leading-[0.96] tracking-[-0.03em] text-fg sm:text-6xl lg:text-[4.75rem]">
-              Your partners in <span className="highlight">software</span> and
-              business excellence.
+            </Eyebrow>
+            <h1
+              className="animate-rise font-display mt-7 text-[2.75rem] leading-[0.98] tracking-[-0.03em] text-fg sm:text-6xl lg:text-[4.5rem]"
+              data-delay="1"
+            >
+              Partners in <span className="highlight highlight-draw">software</span>{" "}
+              and business excellence.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-dim">
-              As seasoned analysts and developers, we offer expert consulting
-              across the entire software development cycle, from business needs
-              analysis to implementation.
+            <p
+              className="animate-rise mt-7 max-w-md text-lg leading-relaxed text-dim"
+              data-delay="2"
+            >
+              Senior analysts and developers, across the whole software cycle.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div
+              className="animate-rise mt-10 flex flex-col gap-3 sm:flex-row"
+              data-delay="3"
+            >
               <ButtonLink href="/contacto" variant="accent" withArrow>
                 Contact us
               </ButtonLink>
@@ -46,123 +58,148 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal lg:col-span-6">
+          <div className="animate-rise lg:col-span-6" data-delay="4">
             <div className="shadow-hard-accent rounded-2xl">
-              <CodeWindow />
+              <HeroPanel />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- Trust bar (ink band) ---------------- */}
-      <section className="on-dark border-b border-fg bg-fg text-base">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-9 sm:px-6 lg:flex-row lg:items-center lg:gap-12">
-          <p className="shrink-0 text-xs font-semibold uppercase tracking-[0.16em] text-base/55">
+      {/* ---------------- Trust bar (black band, static) ---------------- */}
+      <section className="border-b border-fg bg-fg">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-base/55">
             Trusted by teams at
           </p>
-          <div className="marquee-track min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <ul className="animate-marquee flex w-max items-center gap-12">
-              {[...clients, ...clients].map((c, i) => (
-                <li
-                  key={`${c}-${i}`}
-                  className="font-display whitespace-nowrap text-xl font-semibold text-base/45"
-                >
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mx-auto mt-8 grid max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-8 lg:grid-cols-9">
+            {clients.map((c) => (
+              <li key={c.name} className="relative h-6">
+                <Image
+                  src={c.logo}
+                  alt={c.name}
+                  fill
+                  sizes="(max-width: 1024px) 28vw, 110px"
+                  className="object-contain opacity-70 invert transition-opacity duration-200 hover:opacity-100"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ---------------- Services ---------------- */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            eyebrow="What we do"
-            title="Expert software development consulting"
-            intro="We deliver insights, strategies and support to help turn your vision into reality, for startups and established companies alike."
-          />
-          <ButtonLink href="/servicios" variant="ghost" withArrow>
-            More services
-          </ButtonLink>
-        </div>
+      {/* ---------------- Services (asymmetric editorial) ---------------- */}
+      <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-28">
+              <SectionHeading
+                title="Software development consulting"
+                intro="Insights, strategy and hands-on delivery, for startups and established teams alike."
+              />
+              <div className="mt-7">
+                <ButtonLink href="/servicios" variant="ghost" withArrow>
+                  All services
+                </ButtonLink>
+              </div>
+            </div>
+          </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3 md:[grid-auto-rows:1fr]">
-          {servicePillars.map((s, i) => (
-            <article
-              key={s.title}
-              className={`reveal group relative flex flex-col rounded-2xl border border-line bg-base p-8 transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-out)] hover:-translate-y-1 hover:border-fg hover:shadow-soft ${
-                i === 0 ? "md:col-span-2" : ""
-              }`}
-              data-delay={i}
-            >
-              <span className="grid h-12 w-12 place-items-center rounded-xl bg-fg text-accent transition-transform duration-300 ease-[var(--ease-out)] group-hover:-skew-x-6">
-                <Icon name={s.icon} className="h-6 w-6" />
-              </span>
-              <h3 className="font-display mt-6 text-xl font-bold text-fg">
-                {s.title}
-              </h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-dim">
-                {s.text}
-              </p>
-              <ul
-                className={`mt-6 gap-x-8 gap-y-2.5 border-t border-line pt-6 ${
-                  i === 0 ? "grid sm:grid-cols-2" : "space-y-2.5"
-                }`}
+          <ul className="border-t border-line lg:col-span-8">
+            {servicePillars.map((s, i) => (
+              <li
+                key={s.title}
+                className="reveal group flex items-start gap-6 border-b border-line py-8"
+                data-delay={i}
               >
-                {s.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 text-sm text-fg/85"
-                  >
-                    <span className="mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-accent">
-                      <IconCheck className="h-3 w-3 text-fg" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+                <span className="mt-0.5 inline-grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-accent text-on-accent transition-transform duration-300 ease-[var(--ease-out)] group-hover:-rotate-3">
+                  <Icon name={s.icon} className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-display text-xl font-bold text-fg sm:text-2xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-dim">
+                    {s.text}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------------- How we work (process, black band) ---------------- */}
+      <section className="border-y border-fg bg-fg">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+          <div className="max-w-xl">
+            <h2 className="font-display text-3xl font-bold leading-tight text-base sm:text-4xl">
+              How we work
+            </h2>
+            <p className="mt-4 text-base/70">
+              From the first conversation to live, supported software.
+            </p>
+          </div>
+          <ol className="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+            {process.map((s, i) => (
+              <li
+                key={s.title}
+                className="reveal relative border-t border-base/15 pt-5"
+                data-delay={i}
+              >
+                <span
+                  aria-hidden="true"
+                  className="draw-rule absolute -top-px left-0 h-0.5 w-12 bg-accent"
+                />
+                <span className="font-display text-2xl font-bold tabular-nums text-accent">
+                  0{i + 1}
+                </span>
+                <h3 className="font-display mt-3 text-lg font-bold text-base">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-base/70">
+                  {s.text}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* ---------------- Office teaser ---------------- */}
       <section className="border-t border-line bg-panel">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="reveal grid grid-cols-2 gap-4">
-              <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-line">
+              <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
                   src="/office/sala-reuniones.jpg"
                   alt="BlackBox Coworking meeting room with red chairs"
                   fill
                   sizes="(max-width: 1024px) 50vw, 300px"
-                  className="object-cover grayscale transition-all duration-700 ease-[var(--ease-out)] group-hover:grayscale-0"
+                  className="object-cover grayscale transition-[transform,filter] duration-500 ease-[var(--ease-out)] group-hover:scale-[1.03] group-hover:grayscale-0"
                 />
               </div>
-              <div className="group relative mt-8 aspect-[3/4] overflow-hidden rounded-2xl border border-line">
+              <div className="group relative mt-8 aspect-[3/4] overflow-hidden rounded-2xl">
                 <Image
                   src="/office/cafe.jpg"
                   alt="Coworking coffee corner with a vintage shelf"
                   fill
                   sizes="(max-width: 1024px) 50vw, 300px"
-                  className="object-cover grayscale transition-all duration-700 ease-[var(--ease-out)] group-hover:grayscale-0"
+                  className="object-cover grayscale transition-[transform,filter] duration-500 ease-[var(--ease-out)] group-hover:scale-[1.03] group-hover:grayscale-0"
                 />
               </div>
             </div>
-            <div>
-              <Eyebrow>Office · BlackBox Coworking</Eyebrow>
-              <h2 className="font-display mt-4 text-3xl font-bold leading-tight text-fg sm:text-4xl">
-                We also have a place to create
+            <div className="reveal" data-delay="1">
+              <Eyebrow>BlackBox Coworking</Eyebrow>
+              <h2 className="font-display mt-5 text-3xl font-bold leading-tight text-fg sm:text-4xl">
+                A place to create
               </h2>
-              <p className="mt-4 max-w-[55ch] text-lg leading-relaxed text-dim">
-                Our coworking space in Premià de Mar: a warm, carefully designed
-                place to work, focus and connect with other professionals.
+              <p className="mt-4 max-w-sm text-lg leading-relaxed text-dim">
+                Our coworking space in Premià de Mar. Warm, calm, made to focus.
               </p>
               <div className="mt-8">
-                <ButtonLink href="/office" variant="primary" withArrow>
+                <ButtonLink href="/office" variant="secondary" withArrow>
                   Discover the space
                 </ButtonLink>
               </div>
@@ -171,9 +208,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- Projects · AZA teaser (warm/pastel world) ---------------- */}
-      <section className="border-t border-line px-4 py-20 sm:px-6 sm:py-24">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl bg-[#f6ece2] px-6 py-14 sm:px-12 sm:py-16">
+      {/* ---------------- Projects · AZA (warm light island) ---------------- */}
+      <section className="border-t border-line px-4 py-24 sm:px-6 sm:py-28">
+        <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-2xl bg-[#f6ece2] px-6 py-14 sm:px-12 sm:py-16">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-[#e8c9b0]/60 blur-2xl"
@@ -181,19 +218,19 @@ export default function Home() {
           <div className="relative grid items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <span className="eyebrow inline-flex items-center gap-2.5 text-[#b4623c]">
-                <span className="h-3 w-3 -skew-x-12 bg-[#e0a06f]" aria-hidden="true" />
+                <span className="h-px w-8 bg-[#e0a06f]" aria-hidden="true" />
                 Projects · {aza.name}
               </span>
               <h2 className="font-display mt-4 text-3xl font-bold leading-tight text-[#3b2a22] sm:text-4xl">
                 {aza.tagline}
               </h2>
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-[#6b5546]">
-                {aza.intro}
+              <p className="mt-4 max-w-md text-lg leading-relaxed text-[#6b5546]">
+                A free, web-based method that helps families reconnect.
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <Link
                   href="/projects"
-                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#3b2a22] px-6 py-3 text-sm font-semibold text-[#f6ece2] transition-all duration-200 hover:bg-[#2c1f19] active:scale-[0.97] motion-reduce:active:scale-100"
+                  className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#3b2a22] px-6 py-3 text-sm font-semibold text-[#f6ece2] transition-[transform,background-color] duration-150 ease-[var(--ease-out)] hover:bg-[#2c1f19] active:scale-[0.97] motion-reduce:active:scale-100"
                 >
                   About {aza.name}
                   <IconArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -215,36 +252,77 @@ export default function Home() {
                 alt="AZA flower logo with five coloured petals"
                 width={180}
                 height={180}
-                className="h-36 w-36 lg:h-44 lg:w-44"
+                className="animate-floaty h-36 w-36 lg:h-44 lg:w-44"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- Final CTA · committed yellow drench ---------------- */}
+      {/* ---------------- The team (real faces) ---------------- */}
+      <section className="border-t border-line">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <div className="lg:col-span-5">
+              <h2 className="font-display text-3xl font-bold leading-tight text-fg sm:text-4xl">
+                The people you’ll work with
+              </h2>
+              <p className="mt-4 max-w-sm text-lg leading-relaxed text-dim">
+                {foundersIntro}
+              </p>
+              <div className="mt-7">
+                <ButtonLink href="/sobre-nosotros" variant="ghost" withArrow>
+                  About us
+                </ButtonLink>
+              </div>
+            </div>
+            <ul className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+              {founders.map((f, i) => (
+                <li
+                  key={f.name}
+                  className="reveal group flex items-center gap-5 rounded-2xl border border-line p-5 transition-colors duration-300 hover:border-fg"
+                  data-delay={i}
+                >
+                  <Image
+                    src={f.photo}
+                    alt={f.name}
+                    width={96}
+                    height={96}
+                    className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                  />
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-fg">
+                      {f.name}
+                    </h3>
+                    <p className="mt-0.5 text-sm font-semibold text-dim">
+                      {f.role}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Final CTA · yellow band ---------------- */}
       <section className="border-t border-fg bg-accent">
-        <div className="relative mx-auto max-w-6xl overflow-hidden px-4 py-20 text-center sm:px-6 sm:py-28">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
-          />
-          <div className="reveal relative mx-auto max-w-3xl">
-            <h2 className="font-display mx-auto max-w-2xl text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.03em] text-fg sm:text-6xl">
+        <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-32">
+          <div className="reveal">
+            <h2 className="font-display mx-auto max-w-2xl text-[2.5rem] leading-[1.02] tracking-[-0.03em] text-on-accent sm:text-6xl">
               Let’s forge something great together
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-fg/75">
-              Tell us where you’re headed. We’ll tell you the shortest honest
-              path to get there.
+            <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-on-accent/80">
+              A short call, no pitch. We reply within one business day.
             </p>
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <ButtonLink href="/contacto" variant="primary" withArrow>
                 Contact us
               </ButtonLink>
               <ButtonLink
                 href="/servicios"
                 variant="secondary"
-                className="border-fg/30 bg-transparent hover:border-fg"
+                className="border-on-accent/30 text-on-accent hover:border-on-accent hover:bg-transparent"
               >
                 Explore services
               </ButtonLink>

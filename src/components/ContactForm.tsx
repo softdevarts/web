@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IconCheck, IconArrowRight } from "./icons";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-xl border border-line bg-base px-4 py-3 text-fg outline-none transition-colors placeholder:text-dim/50 focus:border-fg";
+  "mt-1.5 w-full rounded-xl border border-line bg-base px-4 py-3 text-fg outline-none transition-colors placeholder:text-dim/50 focus:border-accent";
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -24,9 +24,9 @@ export default function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        className="rounded-2xl border border-line bg-base p-10 text-center shadow-soft"
+        className="rounded-2xl border border-line bg-panel p-10 text-center shadow-soft"
       >
-        <span className="mx-auto grid h-14 w-14 place-items-center rounded-full border border-line bg-accent text-fg">
+        <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-accent text-on-accent">
           <IconCheck className="h-7 w-7" />
         </span>
         <h3 className="font-display mt-5 text-xl font-bold text-fg">
@@ -38,7 +38,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="mt-6 cursor-pointer rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-fg transition-colors hover:bg-fg hover:text-base"
+          className="mt-6 cursor-pointer rounded-full border border-line-strong px-5 py-2.5 text-sm font-semibold text-fg transition-[transform,background-color,border-color] duration-150 ease-[var(--ease-out)] hover:border-fg hover:bg-panel-2 active:scale-[0.98] motion-reduce:active:scale-100"
         >
           Send another message
         </button>
@@ -49,7 +49,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-line bg-base p-6 shadow-soft sm:p-8"
+      className="rounded-2xl border border-line bg-panel p-6 shadow-soft sm:p-8"
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -116,7 +116,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-fg px-6 py-3.5 text-sm font-semibold text-base transition-opacity hover:opacity-90"
+        className="group mt-7 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-fg px-6 py-3.5 text-sm font-semibold text-base transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:opacity-90 active:scale-[0.99] motion-reduce:active:scale-100"
       >
         Send message
         <IconArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />

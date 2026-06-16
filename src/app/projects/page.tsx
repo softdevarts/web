@@ -10,9 +10,8 @@ export const metadata: Metadata = {
 };
 
 /*
-  Projects page. A short explanation of AZA with aza.family's warm,
-  pastel look & feel and its five-petal flower, a deliberate contrast
-  to the main black/white/yellow brand.
+  Projects page. AZA in its own warm, pastel world with the five guide
+  characters, a deliberate contrast to the main black/white/yellow brand.
 */
 export default function ProjectsPage() {
   return (
@@ -26,9 +25,9 @@ export default function ProjectsPage() {
           <Image
             src={aza.logo}
             alt="AZA flower logo with five coloured petals"
-            width={104}
-            height={104}
-            className="mx-auto h-24 w-24"
+            width={160}
+            height={160}
+            className="mx-auto h-32 w-32"
             priority
           />
           <p className="mt-7 text-sm font-semibold uppercase tracking-[0.18em] text-[#b4623c]">
@@ -58,7 +57,7 @@ export default function ProjectsPage() {
               href={aza.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#b4623c] px-7 py-3.5 text-sm font-semibold text-[#f6ece2] transition-all duration-200 hover:bg-[#a4562f] active:scale-[0.97] motion-reduce:active:scale-100"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#b4623c] px-7 py-3.5 text-sm font-semibold text-[#f6ece2] transition-[transform,background-color] duration-150 ease-[var(--ease-out)] hover:bg-[#a4562f] active:scale-[0.97] motion-reduce:active:scale-100"
             >
               Visit aza.family
               <IconArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -67,32 +66,68 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* The five guides, one per petal */}
-      <section className="mx-auto max-w-5xl px-4 pb-8 sm:px-6">
-        <div className="rounded-2xl bg-white/55 p-8 sm:p-12">
-          <h2 className="font-display text-2xl font-bold text-[#3b2a22] sm:text-3xl">
+      {/* How a week works: three real phases */}
+      <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+        <h2 className="font-display text-center text-2xl font-bold text-[#3b2a22] sm:text-3xl">
+          How a week works
+        </h2>
+        <ol className="mx-auto mt-10 grid max-w-3xl gap-10 sm:grid-cols-3 sm:gap-8">
+          {aza.phases.map((p, i) => (
+            <li key={p.title} className="reveal text-center" data-delay={i}>
+              <span className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-[#3b2a22] font-display text-sm font-bold text-[#f6ece2]">
+                {i + 1}
+              </span>
+              <h3 className="font-display mt-4 text-lg font-bold text-[#3b2a22]">
+                {p.title}
+              </h3>
+              <p className="mx-auto mt-2 max-w-[16rem] text-sm leading-relaxed text-[#6b5546]">
+                {p.text}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* The five guides, one per petal, each with its character */}
+      <section className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
+        <div className="rounded-2xl bg-white/55 px-6 py-12 sm:px-10 sm:py-14">
+          <h2 className="font-display text-center text-2xl font-bold text-[#3b2a22] sm:text-3xl">
             Five weeks, five guides
           </h2>
-          <p className="mt-3 max-w-2xl text-[#6b5546]">{aza.how}</p>
-          <ol className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-            {aza.weeks.map((w) => (
-              <li key={w.title} className="reveal flex gap-4">
-                <span
-                  className="mt-1 h-4 w-4 shrink-0 rounded-full"
-                  style={{ backgroundColor: w.color }}
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="font-display font-bold text-[#3b2a22]">
-                    <span className="text-[#a98a6f]">{w.n}</span> {w.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-[#6b5546]">
-                    {w.text}
-                  </p>
+          <p className="mx-auto mt-3 max-w-2xl text-center leading-relaxed text-[#6b5546]">
+            {aza.how}
+          </p>
+          <ul className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+            {aza.weeks.map((w, i) => (
+              <li
+                key={w.title}
+                className="reveal group text-center"
+                data-delay={i % 3}
+              >
+                <div
+                  className="mx-auto grid h-32 w-32 place-items-center rounded-full"
+                  style={{ backgroundColor: `${w.color}26` }}
+                >
+                  <Image
+                    src={w.img}
+                    alt={`${w.title}, an AZA guide character`}
+                    width={128}
+                    height={128}
+                    className="h-24 w-auto object-contain transition-transform duration-500 ease-[var(--ease-out)] group-hover:-translate-y-2"
+                  />
                 </div>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-[#a98a6f]">
+                  Week {w.n}
+                </p>
+                <h3 className="font-display mt-1 text-lg font-bold text-[#3b2a22]">
+                  {w.title}
+                </h3>
+                <p className="mx-auto mt-2 max-w-[15rem] text-sm leading-relaxed text-[#6b5546]">
+                  {w.text}
+                </p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
@@ -111,7 +146,7 @@ export default function ProjectsPage() {
               href={aza.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#f6ece2] px-7 py-3.5 text-sm font-semibold text-[#3b2a22] transition-all duration-200 hover:bg-white active:scale-[0.97] motion-reduce:active:scale-100"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#f6ece2] px-7 py-3.5 text-sm font-semibold text-[#3b2a22] transition-[transform,background-color] duration-150 ease-[var(--ease-out)] hover:bg-white active:scale-[0.97] motion-reduce:active:scale-100"
             >
               Explore {aza.name}
               <IconArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

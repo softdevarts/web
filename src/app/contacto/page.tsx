@@ -13,19 +13,15 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-line">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]"
-        />
-        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
+      <section className="border-b border-line">
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
           <Eyebrow>Contact</Eyebrow>
-          <h1 className="font-display mt-5 max-w-3xl text-5xl font-bold leading-[0.98] tracking-[-0.03em] text-fg sm:text-6xl lg:text-7xl">
-            Let’s forge something <span className="highlight">great together</span>
+          <h1 className="font-display mt-6 max-w-4xl text-[2.5rem] leading-[0.98] tracking-[-0.03em] text-fg sm:text-6xl lg:text-7xl">
+            Let’s forge something{" "}
+            <span className="highlight">great together</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-dim">
-            Tell us what you need and we’ll get back to you with a tailored
-            proposal, no strings attached.
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-dim">
+            Tell us what you need. We’ll reply with a tailored proposal.
           </p>
         </div>
       </section>
@@ -42,7 +38,7 @@ export default function ContactoPage() {
 
             <ul className="mt-8 space-y-6">
               <li className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-fg text-accent">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent text-on-accent">
                   <IconMail className="h-6 w-6" />
                 </span>
                 <div>
@@ -56,7 +52,7 @@ export default function ContactoPage() {
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-fg text-accent">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent text-on-accent">
                   <IconPin className="h-6 w-6" />
                 </span>
                 <div>
@@ -86,7 +82,7 @@ export default function ContactoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="SoftDevArts on Instagram"
-                className="grid h-11 w-11 place-items-center rounded-full border border-line text-fg transition-colors hover:bg-accent"
+                className="grid h-11 w-11 place-items-center rounded-full border border-line text-dim transition-colors hover:border-accent hover:text-accent"
               >
                 <IconInstagram className="h-5 w-5" />
               </a>
@@ -95,7 +91,7 @@ export default function ContactoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="SoftDevArts on LinkedIn"
-                className="grid h-11 w-11 place-items-center rounded-full border border-line text-fg transition-colors hover:bg-accent"
+                className="grid h-11 w-11 place-items-center rounded-full border border-line text-dim transition-colors hover:border-accent hover:text-accent"
               >
                 <IconLinkedin className="h-5 w-5" />
               </a>

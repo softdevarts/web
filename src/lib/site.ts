@@ -1,3 +1,18 @@
+import santander from "@/app/assets/companies/santander.png";
+import cargill from "@/app/assets/companies/cargill.png";
+import tous from "@/app/assets/companies/tous.png";
+import vistaprint from "@/app/assets/companies/vistaprint.png";
+import sony from "@/app/assets/companies/sony.png";
+import aena from "@/app/assets/companies/aena.png";
+import adp from "@/app/assets/companies/adp_logo.png";
+import adaptive from "@/app/assets/companies/adaptive-1.png";
+import cibc from "@/app/assets/companies/CIBC.png";
+import azaCuriosity from "@/app/assets/aza/Curiosidad.png";
+import azaCompassion from "@/app/assets/aza/Compasion.png";
+import azaPresence from "@/app/assets/aza/Presencia.png";
+import azaAutonomy from "@/app/assets/aza/Autonomia.png";
+import azaBonds from "@/app/assets/aza/Vinculos.png";
+
 /*
   Single source of truth for site content (English).
   Data drawn from softdevarts.com (main), aza.family (Projects)
@@ -15,7 +30,7 @@ export const site = {
     region: "Barcelona, Spain",
   },
   social: {
-    instagram: "https://www.instagram.com/",
+    instagram: "https://www.instagram.com/blackboxcoworking/",
     linkedin: "https://www.linkedin.com/",
   },
   mapsUrl:
@@ -30,19 +45,19 @@ export const nav = [
   { href: "/projects", label: "Projects" },
   { href: "/office", label: "Office" },
   { href: "/sobre-nosotros", label: "About" },
-  { href: "/contacto", label: "Contact" },
 ] as const;
 
-/* Clients referenced on softdevarts.com */
+/* Clients referenced on softdevarts.com (real logos, black on transparent) */
 export const clients = [
-  "Santander",
-  "Cargill",
-  "Tous",
-  "Vistaprint",
-  "Sony",
-  "Aena",
-  "ADP",
-  "Adaptive",
+  { name: "Santander", logo: santander },
+  { name: "Cargill", logo: cargill },
+  { name: "Tous", logo: tous },
+  { name: "Vistaprint", logo: vistaprint },
+  { name: "Sony", logo: sony },
+  { name: "Aena", logo: aena },
+  { name: "ADP", logo: adp },
+  { name: "Adaptive", logo: adaptive },
+  { name: "CIBC", logo: cibc },
 ] as const;
 
 /* Three service pillars */
@@ -79,56 +94,55 @@ export const servicePillars = [
   },
 ] as const;
 
-/* Why SoftDevArts, five reasons (real copy from softdevarts.com) */
+/* Why SoftDevArts, five reasons (condensed from softdevarts.com) */
 export const reasons = [
   {
     icon: "shield",
-    title: "Proven Expertise",
-    text: "With a track record of success across various industries, we know what it takes to build software that not only works but excels. Our deep understanding of the entire software development lifecycle – from need analysis to deployment – ensures that nothing is left to chance.",
+    title: "Proven expertise",
+    text: "Full command of the lifecycle, from analysis to deployment, across many industries.",
   },
   {
     icon: "spark",
-    title: "Detail-Oriented Excellence",
-    text: "We believe in the power of details. Our approach is meticulous, ensuring that every aspect of your project is thoughtfully considered, expertly executed, and aligned with your business goals. We focus on quality, performance, and user experience to create solutions that truly stand out.",
+    title: "Detail-oriented",
+    text: "Meticulous by default: quality, performance and experience in every delivery.",
   },
   {
     icon: "compass",
-    title: "Strategic Guidance",
-    text: "We understand the challenges companies face today – from managing development teams to keeping up with the latest technologies. With our strategic guidance, you’ll overcome obstacles, streamline processes, and implement the most effective techniques, methodologies, and frameworks that drive success.",
+    title: "Strategic guidance",
+    text: "We clear obstacles and bring the methods and frameworks that actually move you forward.",
   },
   {
     icon: "network",
-    title: "Powerful Network",
-    text: "Our network of seasoned professionals is at your service. From specialized developers to top-tier consultants, we bring together the best minds in the industry to tackle your most complex challenges.",
+    title: "Powerful network",
+    text: "Specialised developers and senior consultants, on hand for the hardest problems.",
   },
   {
     icon: "rocket",
-    title: "Tailored Solutions for Startups",
-    text: "New to software development? No problem. We provide end-to-end support, helping you navigate the entire development process. From shaping your ideas to managing your team, we ensure your product is built right from the start.",
+    title: "Built for startups",
+    text: "End-to-end support, from shaping the idea to running the team that builds it.",
   },
 ] as const;
 
-/* ---- About us (real copy from softdevarts.com) ---- */
+/* ---- About us (condensed from softdevarts.com) ---- */
 export const aboutStory = [
-  "Welcome to Software Development Artisans, where we specialize in crafting digital solutions with care and precision. As a small yet dynamic team, we bring together decades of collective experience from our roles in multinational corporations. Our journey began in the fast-paced world of international teams, where we honed our skills as developers and business analysts.",
-  "At Software Development Artisans, we believe in blending ancient artistry with modern innovation. Every line of code we write is a testament to our dedication to craftsmanship, ensuring that each project is crafted with meticulous attention to detail. From hammering out elegant designs to handcrafting robust software solutions, we take pride in shaping your vision into reality.",
-  "Our commitment to excellence extends beyond just delivering projects; it’s about building lasting relationships with our clients. We understand the challenges you face and are dedicated to finding innovative solutions that meet your unique needs.",
+  "A small, dynamic team with decades of multinational experience as developers and business analysts.",
+  "We blend craftsmanship with modern technology, every line written with care, and build lasting relationships, not throwaway projects.",
 ] as const;
 
 export const foundersIntro =
-  "Azahara and Carlos, the Co-Founders of Software Development Artisans, are seasoned professionals with a passion for technology and innovation. With a wealth of experience in their respective fields, they lead by example, guiding the team towards excellence in every project.";
+  "Two co-founders who lead by example, guiding the team towards excellence in every project.";
 
 export const founders = [
   {
     name: "Azahara",
     role: "Co-founder · Senior Business Analyst",
-    bio: "Azahara, a senior business analyst, leverages her keen analytical skills to uncover insights that drive business growth. Her strategic mindset and attention to detail ensure that each project is aligned with client objectives and delivers tangible results.",
+    bio: "Turns sharp analysis into insight, keeping every project aligned with real objectives.",
     photo: "/team/azahara.png",
   },
   {
     name: "Carlos",
     role: "Co-founder · Senior Developer",
-    bio: "Carlos, a Senior Developer, brings a wealth of technical knowledge and expertise to the table. With a focus on innovation and efficiency, he leads the development team in building cutting-edge solutions that push the boundaries of what’s possible in the digital world.",
+    bio: "Drives innovation and efficiency, leading the team to build solutions that push what’s possible.",
     photo: "/team/carlos.png",
   },
 ] as const;
@@ -146,13 +160,18 @@ export const aza = {
     "Designed with psychologists",
     "No extra mental load",
   ],
-  how: "Once a week you open the app, get your mission, live it naturally in everyday life, and close with a short reflection. Five weeks, five guides, one per petal.",
+  how: "One mission a week, lived naturally in everyday life, closed with a short reflection. Five weeks, five guides, one per petal.",
+  phases: [
+    { title: "Mission", text: "A guide proposes one small, easy task for the week." },
+    { title: "In action", text: "Live it at your own pace. No pressure, no perfectionism." },
+    { title: "Reflection", text: "A short moment to pause and share what you noticed." },
+  ],
   weeks: [
-    { n: "01", title: "Curiosity", text: "Ask better questions and really listen.", color: "#88a06a" },
-    { n: "02", title: "Compassion", text: "Meet each other with kindness, not judgement.", color: "#f0c24a" },
-    { n: "03", title: "Presence", text: "Be there, fully, in the small moments.", color: "#e8745a" },
-    { n: "04", title: "Autonomy", text: "Give space to grow while staying close.", color: "#d6a15f" },
-    { n: "05", title: "Bonds", text: "Strengthen the ties that hold you together.", color: "#8fc3ef" },
+    { n: "01", title: "Curiosity", text: "Real listening: swap automatic questions for ones that open up.", color: "#e6b33f", img: azaCuriosity },
+    { n: "02", title: "Compassion", text: "Let go of the daily guilt. You're already doing your best.", color: "#e07a59", img: azaCompassion },
+    { n: "03", title: "Presence", text: "Less screen noise. Be there, with all five senses.", color: "#7fb4e3", img: azaPresence },
+    { n: "04", title: "Autonomy", text: "Space and freedom for each person in the family.", color: "#c89a63", img: azaAutonomy },
+    { n: "05", title: "Bonds", text: "Unique moments, more laughter, a deeper connection.", color: "#8ba86a", img: azaBonds },
   ],
 } as const;
 

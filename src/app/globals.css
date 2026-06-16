@@ -1,20 +1,19 @@
 @import "tailwindcss";
 
 /*
-  SoftDevArts · Design System v4 · "Yellow Press"
+  SoftDevArts · Design System v6 · "White / Yellow · Minimal"
   -------------------------------------------------------------
-  Architectural, craft-engineering brand. Off-white canvas,
-  near-black ink, and a COMMITTED press-yellow used as full
-  surfaces (whole bands / blocks carrying black type), never as
-  yellow text on white (fails contrast). Schematic hairlines and
-  a sparse blueprint grid carry the engineering register.
+  Light, minimal, lots of air. Off-white canvas, near-black ink,
+  press-yellow as the brand signal: marker highlights, buttons,
+  small icon blocks and accents. Cards lose their heavy boxes —
+  separation by space and hairlines. Less text, more breathing room.
   Display: Bricolage Grotesque · Body: Hanken Grotesk · Mono: JetBrains Mono.
-  Sub-brands keep their own skin: BlackBox (bb-*, dark) · AZA (warm pastels).
-  Token NAMES are stable so every page inherits the restyle.
+  Sub-brands keep their own world: BlackBox (bb-*, dark) · AZA (warm light).
+  Token NAMES are stable so every page inherits the theme.
 */
 
 @theme {
-  /* ---- Core palette (OKLCH) ---- */
+  /* ---- Core palette (OKLCH · light) ---- */
   --color-base: oklch(0.985 0.002 95); /* off-white page canvas (no pure #fff) */
   --color-panel: oklch(0.965 0.004 95); /* light section surface */
   --color-panel-2: oklch(0.94 0.006 95); /* hover / nested surface */
@@ -23,11 +22,11 @@
   --color-line: oklch(0.9 0.006 95); /* hairline border */
   --color-line-strong: oklch(0.82 0.008 95); /* emphasis hairline */
 
-  --color-accent: oklch(0.87 0.18 96); /* PRESS YELLOW · fills / blocks / signal */
+  --color-accent: oklch(0.87 0.18 96); /* press yellow · signal */
   --color-accent-soft: oklch(0.95 0.07 98); /* pale yellow wash */
-  --color-accent-ink: oklch(0.36 0.09 78); /* dark-yellow text (AA on white) */
+  --color-on-accent: oklch(0.22 0.04 80); /* dark ink for text/icons ON yellow */
 
-  /* gradient endpoints kept for legacy thin accent lines */
+  /* gradient endpoints kept for legacy */
   --color-brand: oklch(0.18 0.004 90);
   --color-brand-2: oklch(0.87 0.18 96);
 
@@ -39,9 +38,9 @@
   --color-bb-accent: oklch(0.97 0.002 90);
   --color-bb-line: oklch(0.3 0.003 90);
 
-  /* ---- Typography ---- */
-  --font-sans: var(--font-sans-src), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display-src), var(--font-sans-src), sans-serif;
+  /* ---- Typography (Circular Std across the whole site) ---- */
+  --font-sans: var(--font-circular), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-circular), ui-sans-serif, sans-serif;
   --font-mono: var(--font-mono-src), ui-monospace, "SFMono-Regular", monospace;
 
   /* ---- Motion ---- */
@@ -84,7 +83,6 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Fallback smooth scroll when Lenis is off (reduced motion) */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: smooth;
@@ -100,18 +98,18 @@ body {
   font-feature-settings: "ss01", "cv01";
 }
 
-/* Display utility — Bricolage, tight-but-legible tracking (floor -0.04em) */
+/* Display utility — Bricolage, tight-but-legible (floor -0.04em) */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.022em;
-  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+  line-height: 1.04;
 }
 
 .font-mono {
   font-family: var(--font-mono);
 }
 
-/* Typographic niceties */
 h1,
 h2,
 h3 {
@@ -121,57 +119,60 @@ p {
   text-wrap: pretty;
 }
 
-/* Yellow marker highlight behind inline text (keeps black text on top) */
+/* Yellow marker highlight behind inline text (dark text stays on top) */
 .highlight {
   background-image: linear-gradient(
-    transparent 8%,
-    var(--color-accent) 8%,
-    var(--color-accent) 90%,
-    transparent 90%
+    transparent 10%,
+    var(--color-accent) 10%,
+    var(--color-accent) 88%,
+    transparent 88%
   );
   padding-inline: 0.14em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
-/* Solid ink fill block (icon tiles, dark blocks); legacy name kept */
+/* Solid ink fill block (legacy) */
 .gradient-brand {
   background: var(--color-fg);
 }
-
-/* Fallback for any leftover gradient-text usage: solid near-black ink */
 .gradient-text {
   color: var(--color-fg);
 }
 
-/* Card surface — full hairline, no decorative shadow paired with it */
+/* Card surface — minimal */
 .card-glow {
   background: var(--color-base);
   border: 1px solid var(--color-line);
 }
 
-/* Defined elevations (use ONE, never border+wide-shadow together) */
+/* Subtle elevation only (premium, never loud) */
 .shadow-soft {
-  box-shadow: 0 1px 0 var(--color-line), 0 18px 40px -28px oklch(0.18 0.01 90 / 0.4);
+  box-shadow: 0 1px 0 var(--color-line), 0 22px 50px -34px oklch(0.18 0.01 90 / 0.35);
 }
-
-/* Hard architectural offset shadow (no blur) — the press/print feel */
+/* Hard offset shadow — the press/print depth (used on the hero object) */
 .shadow-hard {
-  box-shadow: 8px 8px 0 0 var(--color-fg);
+  box-shadow: 14px 14px 0 0 var(--color-fg);
 }
 .shadow-hard-accent {
-  box-shadow: 8px 8px 0 0 var(--color-accent);
+  box-shadow: 14px 14px 0 0 var(--color-accent);
+}
+@media (max-width: 640px) {
+  .shadow-hard,
+  .shadow-hard-accent {
+    box-shadow: 8px 8px 0 0 var(--color-accent);
+  }
 }
 
-/* Sparse blueprint grid (decorative, deliberate — engineering register) */
+/* Hairline grid kept for opt-in use (ultra-faint) */
 .bg-grid {
   background-image:
-    linear-gradient(to right, oklch(0.18 0.01 90 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.18 0.01 90 / 0.05) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(to right, oklch(0.18 0.01 90 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.18 0.01 90 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-/* Eyebrow / kicker label — used sparingly, not as section grammar */
+/* Eyebrow / kicker label — used sparingly */
 .eyebrow {
   font-size: 0.75rem;
   font-weight: 600;
@@ -185,29 +186,74 @@ p {
   outline-offset: 2px;
   border-radius: 4px;
 }
-/* On dark / yellow surfaces, switch ring to a visible contrast */
-.on-dark :where(a, button, input, textarea, select):focus-visible {
-  outline-color: var(--color-accent);
-}
 
-/* Reveal-on-scroll — enhances already-visible default (never gates content) */
+/* Reveal-on-scroll — enhances an already-visible default */
 @media (prefers-reduced-motion: no-preference) {
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity 0.7s var(--ease-out-expo),
-      transform 0.7s var(--ease-out-expo);
+      opacity 0.8s var(--ease-out-expo),
+      transform 0.8s var(--ease-out-expo);
     will-change: opacity, transform;
   }
   .reveal.is-visible {
     opacity: 1;
     transform: none;
   }
-  /* Optional stagger when a parent opts in */
   .reveal[data-delay="1"] { transition-delay: 0.08s; }
   .reveal[data-delay="2"] { transition-delay: 0.16s; }
   .reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+  /* Hero load-in: staggered rise on first paint (not scroll-gated) */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .animate-rise {
+    opacity: 0;
+    animation: rise 0.9s var(--ease-out-expo) both;
+  }
+  .animate-rise[data-delay="1"] { animation-delay: 0.08s; }
+  .animate-rise[data-delay="2"] { animation-delay: 0.16s; }
+  .animate-rise[data-delay="3"] { animation-delay: 0.24s; }
+  .animate-rise[data-delay="4"] { animation-delay: 0.34s; }
+
+  /* Slow float for decorative accents */
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50% { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
+  }
+  .animate-floaty {
+    animation: floaty 7s ease-in-out infinite;
+  }
+
+  /* Highlighter sweep: the yellow marker paints in left-to-right on load */
+  @keyframes highlight-sweep {
+    from { background-size: 0% 100%; }
+    to { background-size: 100% 100%; }
+  }
+  .highlight-draw {
+    background-repeat: no-repeat;
+    background-position: left center;
+    animation: highlight-sweep 0.75s var(--ease-out-expo) 0.55s both;
+  }
+
+  /* Yellow rule that draws in when its parent .reveal becomes visible */
+  .draw-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-out-expo) 0.1s;
+  }
+  .reveal.is-visible .draw-rule {
+    transform: scaleX(1);
+  }
 }
 
 /* Marquee for the client logos */
@@ -221,13 +267,13 @@ p {
     }
   }
   .animate-marquee {
-    animation: marquee 38s linear infinite;
+    animation: marquee 42s linear infinite;
   }
   .marquee-track:hover .animate-marquee {
     animation-play-state: paused;
   }
   .animate-marquee-slow {
-    animation: marquee 30s linear infinite;
+    animation: marquee 34s linear infinite;
   }
 }
 
