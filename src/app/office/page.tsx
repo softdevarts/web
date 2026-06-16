@@ -33,7 +33,7 @@ export default function OfficePage() {
             BlackBox Coworking
           </span>
           <h1 className="font-display mt-5 max-w-3xl text-5xl font-bold leading-[0.98] tracking-[-0.02em] sm:text-7xl">
-            A space with character to work better
+            A space with character, to work better
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-bb-muted">
             SoftDevArts’ coworking space in Premià de Mar. Warm, carefully
