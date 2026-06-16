@@ -27,10 +27,6 @@ export default function SobreNosotrosPage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
         />
-        <div
-          aria-hidden="true"
-          className="animate-floaty pointer-events-none absolute -right-12 top-24 hidden h-44 w-44 -skew-x-12 bg-accent/25 blur-[2px] lg:block [--rot:-12deg]"
-        />
         <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
           <Eyebrow className="animate-rise">About us</Eyebrow>
           <h1

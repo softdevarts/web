@@ -21,10 +21,6 @@ export default function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
         />
-        <div
-          aria-hidden="true"
-          className="animate-floaty pointer-events-none absolute -left-16 top-40 hidden h-36 w-36 -skew-x-12 bg-accent/30 blur-[2px] lg:block [--rot:-12deg]"
-        />
 
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-6">
@@ -270,13 +266,13 @@ export default function Home() {
             </div>
             <ul className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
               {founders.map((f, i) => (
-                <li key={f.name} className="reveal" data-delay={i}>
+                <li key={f.name} className="reveal flex" data-delay={i}>
                   <a
                     href={f.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${f.name} on LinkedIn`}
-                    className="group flex items-center gap-5 rounded-2xl border border-line p-5 transition-colors duration-300 hover:border-fg"
+                    className="group flex h-full w-full items-center gap-5 rounded-2xl border border-line p-5 transition-colors duration-300 hover:border-fg"
                   >
                     <Image
                       src={f.photo}

@@ -19,10 +19,6 @@ export default function ServiciosPage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]"
         />
-        <div
-          aria-hidden="true"
-          className="animate-floaty pointer-events-none absolute -right-16 top-28 hidden h-40 w-40 -skew-x-12 bg-accent/25 blur-[2px] lg:block [--rot:-12deg]"
-        />
         <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32">
           <Eyebrow>Services</Eyebrow>
           <h1 className="font-display mt-6 max-w-4xl text-[2.75rem] leading-[0.96] tracking-[-0.03em] text-fg sm:text-6xl lg:text-7xl">
