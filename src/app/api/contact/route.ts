@@ -9,10 +9,10 @@ export const dynamic = "force-dynamic";
 
 // Where the messages land and who they appear to come from.
 // CONTACT_FROM must be an address on a domain verified in Resend.
-// Until the domain is verified, Resend's shared sender works for testing
-// (it can only deliver to the account owner's email).
+// softdevarts.com is verified, so the default sender uses it; override with
+// the CONTACT_FROM env var to send from a different address.
 const TO = process.env.CONTACT_TO || site.email;
-const FROM = process.env.CONTACT_FROM || "SoftDevArts <onboarding@resend.dev>";
+const FROM = process.env.CONTACT_FROM || "SoftDevArts <noreply@softdevarts.com>";
 
 // Anti-spam tuning.
 const MIN_ELAPSED_MS = 3000; // reject submissions faster than a human can fill
